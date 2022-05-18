@@ -5,18 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Customer {
+public class AccountOperation {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    @OneToMany(mappedBy = "customer")
-    private List<BankAccount> bankAccounts;
-
-
+    private Date operationDate;
+    private double amount;
+    private OperationType operationType;
+    @ManyToOne
+    private BankAccount bankAccount;
 }
